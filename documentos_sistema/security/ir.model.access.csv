@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ds_config_admin,access_ds_config_admin,model_ds_config,documentos_sistema.group_documentos_sistema_admin,1,1,1,1
+access_ds_config_user,access_ds_config_user,model_ds_config,,1,0,0,0

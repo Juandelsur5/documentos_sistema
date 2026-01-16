@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- Wrapper Sale Order (Cotización / Orden) -->
+    <template id="ds_sale_order_document">
+        <t t-call="documentos_sistema.ds_document_base">
+            <t t-set="doc" t-value="doc"/>
+
+            <!-- TITULO DINÁMICO -->
+            <h2 style="text-align:center; margin-bottom:10px;">
+                <t t-if="doc.state in ('draft','sent')">COTIZACIÓN</t>
+                <t t-else="">ORDEN DE PEDIDO</t>
+            </h2>
+
+            <!-- CLIENTE / VENDEDOR -->
+            <table width="100%" style="margin-bottom:10px;">
+                <tr>
+                    <td width="60%"><strong>Nombre Cliente:</strong> <span t-esc="doc.partner_id.name"/></td>
+                    <td width="40%"><strong>Teléfono:</strong> <t t-if="doc.partner_id.phone"><span t-esc="doc.partner_id.phone"/></t></td>
+                </tr>
+                <tr>
+                    <td><strong>CC / NIT:</strong> <t t-if="doc.partner_id.vat"><span t-esc="doc.partner_id.vat"/></t></td>
+                    <td><strong>Vendedor:</strong> <span t-esc="doc.user_id.name"/></td>
+                </tr>
+                <tr>
+                    <td><strong>Dirección:</strong> <span t-esc="doc.partner_id.contact_address"/></td>
+                    <td><strong>Tel. Vendedor:</strong> <t t-if="doc.user_id.partner_id.phone"><span t-esc="doc.user_id.partner_id.phone"/></t></td>
+                </tr>
+                <tr>
+                    <td><strong>Ciudad / Zona:</strong> <span t-esc="doc.partner_id.city"/></td>
+                    <td><strong>Fecha:</strong> <span t-esc="doc.date_order"/></td>
+                </tr>
+            </table>
+
+            <!-- TABLA PRODUCTOS (ancho hoja) -->
+            <table width="100%" border="1" cellspacing="0" cellpadding="4" style="font-size:12px;">
+                <thead>
+                    <tr>
+                        <th style="width:12%;">CÓDIGO</th>
+                        <th style="width:38%;">DETALLE DEL PRODUCTO</th>
+                        <th style="width:10%;">CANTIDAD</th>
+                        <th style="width:8%;">IVA %</th>
+                        <th style="width:16%;">VALOR UNITARIO<br/>(Incluido IVA)</th>
+                        <th style="width:16%;">VALOR TOTAL<br/>(Incluido IVA)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="doc.order_line" t-as="l">
+                        <tr>
+                            <td><span t-esc="l.product_id.default_code"/></td>
+                            <td><span t-esc="l.name"/></td>
+                            <td style="text-align:center;"><span t-esc="l.product_uom_qty"/></td>
+                            <td style="text-align:center;">
+                                <span t-esc="', '.join([tax.name for tax in l.tax_id])"/>
+                            </td>
+                            <td style="text-align:right;"><span t-esc="l.price_unit" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
+                            <td style="text-align:right;"><span t-esc="l.price_total" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td>
+                        </tr>
+                    </t>
+                </tbody>
+            </table>
+
+            <!-- TOTALES + SALDO A LA FECHA -->
+            <div style="margin-top:12px; display:flex; justify-content:space-between;">
+                <div style="width:55%; font-size:13px;">
+                    <t t-set="saldo_num" t-value="doc.ds_get_partner_balance_to_date()"/>
+                    <strong>Saldo a la fecha:</strong>
+                    <span t-esc="saldo_num" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/>
+                    <br/>
+                    <strong>En letras:</strong>
+                    <span t-esc="doc.ds_amount_total_to_text()"/>
+                </div>
+
+                <div style="width:40%;">
+                    <table width="100%" border="1" cellspacing="0" cellpadding="4">
+                        <tr><td>Subtotal:</td><td style="text-align:right;"><span t-esc="doc.amount_untaxed" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td></tr>
+                        <tr><td>IVA:</td><td style="text-align:right;"><span t-esc="doc.amount_tax" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></td></tr>
+                        <tr><td>Descuento:</td><td style="text-align:right;">0.00</td></tr>
+                        <tr><td><strong>VALOR TOTAL:</strong></td><td style="text-align:right;"><strong><span t-esc="doc.amount_total" t-options="{'widget': 'monetary', 'display_currency': doc.currency_id}"/></strong></td></tr>
+                    </table>
+                </div>
+            </div>
+
+        </t>
+    </template>
+
+</odoo>
+

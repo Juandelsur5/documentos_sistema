@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- Documento Base QWeb - Documentos del Sistema -->
+    <template id="ds_document_base">
+        <t t-call="web.external_layout">
+            <div class="page">
+
+                <!-- HEADER -->
+                <div class="row mb-3">
+                    <div class="col-6">
+                        <img t-if="doc.company_id.logo"
+                             t-att-src="image_data_uri(doc.company_id.logo)"
+                             style="max-height:90px;"/>
+                    </div>
+                    <div class="col-6 text-right">
+                        <h3 t-esc="doc.company_id.name"/>
+                        <div t-esc="doc.company_id.street"/>
+                        <div t-esc="doc.company_id.city"/>
+                        <div t-esc="doc.company_id.phone"/>
+                    </div>
+                </div>
+
+                <!-- CUERPO DEL DOCUMENTO -->
+                <!-- AQUÍ se inserta la tabla, totales, etc. -->
+                <t t-call="0"/>
+
+                <!-- PIE COMPLETO EDITABLE (ADMIN) -->
+                <div style="margin-top:40px; border-top:1px solid #ccc; padding-top:10px;">
+                    <t t-set="config" t-value="env['ds.config'].search([], limit=1)"/>
+                    <t t-if="config">
+                        <div t-raw="config.footer_html"/>
+                    </t>
+                </div>
+
+            </div>
+        </t>
+    </template>
+
+</odoo>

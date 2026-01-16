@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Menú raíz Documentos del Sistema -->
+    <menuitem
+        id="menu_documentos_sistema_root"
+        name="Documentos del Sistema"
+        sequence="90"
+        groups="documentos_sistema.group_documentos_sistema_admin"
+    />
+
+    <!-- Menú Configuración -->
+    <menuitem
+        id="menu_documentos_sistema_config"
+        name="Configuración"
+        parent="menu_documentos_sistema_root"
+        action="action_ds_config"
+        sequence="10"
+        groups="documentos_sistema.group_documentos_sistema_admin"
+    />
+
+</odoo>
+

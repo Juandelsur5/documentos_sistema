@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Grupo Administrador Documentos del Sistema -->
+    <record id="group_documentos_sistema_admin" model="res.groups">
+        <field name="name">Documentos del Sistema / Administrador</field>
+        <field name="category_id" ref="base.module_category_sales_management"/>
+    </record>
+
+</odoo>
+
