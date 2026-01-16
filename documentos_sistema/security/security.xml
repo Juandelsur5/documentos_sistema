@@ -4,7 +4,7 @@
     <!-- Grupo Administrador Documentos del Sistema -->
     <record id="group_documentos_sistema_admin" model="res.groups">
         <field name="name">Documentos del Sistema / Administrador</field>
-        <field name="category_id" ref="base.module_category_sales_management"/>
+        <field name="category_id" ref="base.module_category_sales"/>
     </record>
 
 </odoo>
