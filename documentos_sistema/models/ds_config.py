@@ -22,3 +22,4 @@ class DsConfig(models.Model):
         config = self.search([], limit=1)
         return config.footer_html if config else ""
 
+

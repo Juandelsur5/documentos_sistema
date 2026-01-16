@@ -76,3 +76,4 @@ Responsabilidad:
 - Sin lógica compleja en QWeb
 - Backend solo para cálculos
 
+

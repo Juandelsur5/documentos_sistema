@@ -47,3 +47,4 @@ El módulo cumple porque:
 Con las correcciones de prioridad alta y media,
 el módulo es **apto para producción** en Odoo 17 y CloudPepper.
 
+

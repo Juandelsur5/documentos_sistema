@@ -9,15 +9,15 @@
                 <!-- HEADER -->
                 <div class="row mb-3">
                     <div class="col-6">
-                        <img t-if="doc.company_id.logo"
-                             t-att-src="image_data_uri(doc.company_id.logo)"
+                        <img t-if="o.company_id.logo"
+                             t-att-src="'/web/image/res.company/%s/logo' % o.company_id.id"
                              style="max-height:90px;"/>
                     </div>
                     <div class="col-6 text-right">
-                        <h3 t-esc="doc.company_id.name"/>
-                        <div t-esc="doc.company_id.street"/>
-                        <div t-esc="doc.company_id.city"/>
-                        <div t-esc="doc.company_id.phone"/>
+                        <h3 t-esc="o.company_id.name"/>
+                        <div t-esc="o.company_id.street"/>
+                        <div t-esc="o.company_id.city"/>
+                        <div t-esc="o.company_id.phone"/>
                     </div>
                 </div>
 
@@ -27,10 +27,7 @@
 
                 <!-- PIE COMPLETO EDITABLE (ADMIN) -->
                 <div style="margin-top:40px; border-top:1px solid #ccc; padding-top:10px;">
-                    <t t-set="config" t-value="env['ds.config'].search([], limit=1)"/>
-                    <t t-if="config">
-                        <div t-raw="config.footer_html"/>
-                    </t>
+                    <div t-raw="o.ds_footer_html()"/>
                 </div>
 
             </div>

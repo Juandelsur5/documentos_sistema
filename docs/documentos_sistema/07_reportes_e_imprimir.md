@@ -48,3 +48,4 @@ Imprimir
 - Cotización en PDF (Odoo)
 - Otros reportes estándar
 
+

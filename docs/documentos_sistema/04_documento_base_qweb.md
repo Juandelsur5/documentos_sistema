@@ -63,3 +63,4 @@ Está prohibido en el documento base:
 Si el documento base cambia, **todos los documentos del sistema cambian**.
 Por esta razón debe mantenerse simple, estable y sin lógica.
 
+

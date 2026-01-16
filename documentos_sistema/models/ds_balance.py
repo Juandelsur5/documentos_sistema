@@ -55,3 +55,4 @@ class AccountMoveBalance(models.Model):
         invoices = self.env["account.move"].search(domain)
         return sum(invoices.mapped("amount_residual"))
 
+

@@ -35,3 +35,4 @@ Proveer un **Documento Base reutilizable** que sirva como fundamento para:
 - Validaciones legales
 - Integraciones externas (GIITIC)
 
+
