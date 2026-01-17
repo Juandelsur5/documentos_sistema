@@ -3,6 +3,7 @@
 
     <template id="ds_sale_order_document">
         <t t-call="documentos_sistema.ds_document_base">
+            <t t-set="doc" t-value="o"/>
             <t t-set="o" t-value="o or doc"/>
 
             <h2 style="text-align:center; margin-bottom:10px;">
@@ -10,8 +11,14 @@
                 <t t-else="">ORDEN DE PEDIDO</t>
             </h2>
 
+            <table width="100%" style="margin-bottom:10px;">
+                <tr>
+                    <td width="60%"><strong>Nombre Cliente:</strong> <span t-esc="o.partner_id.name"/></td>
+                    <td width="40%"><strong>Teléfono:</strong> <span t-esc="o.partner_id.phone"/></td>
+                </tr>
+            </table>
+
         </t>
     </template>
 
 </odoo>
-
