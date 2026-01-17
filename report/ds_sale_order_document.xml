@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="ds_sale_order_document">
+        <t t-call="documentos_sistema.ds_document_base">
+            <t t-set="o" t-value="o or doc"/>
+
+            <h2 style="text-align:center; margin-bottom:10px;">
+                <t t-if="o and o.state in ('draft','sent')">COTIZACIÓN</t>
+                <t t-else="">ORDEN DE PEDIDO</t>
+            </h2>
+
+        </t>
+    </template>
+
+</odoo>
+
